@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>📚 My Book App</h1>
+
+  <div class="buttons">
+    <button id="loadBtn">Load Books</button>
+    <button id="toggleFormBtn">➕ Add Book</button>
+  </div>
+  
+  <div class="chatbox">
+    <h2>Chatbot</h2>
+    <input type="text" id="chatInput" placeholder="Ask me something..." />
+    <button id="chatBtn">Send</button>
+    <div id="chatResponse"></div>
+  </div>
+  
+  <div class="form" id="bookForm" style="display: none;">
+    <h2>Add a New Book</h2>
+    <input type="text" id="titleInput" placeholder="Book Title" />
+    <input type="text" id="authorInput" placeholder="Author" />
+    <button id="submitBtn">Confirm book details </button>
+  </div>
+
+  <ul id="booksList"></ul>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

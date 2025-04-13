@@ -10,11 +10,17 @@ A simple web based library where Bookbot will assist in finding what you need.
 After installing MySQL, open the Command Line Client, set your password, create a database and access it:
 ```SQL
 CREATE DATABASE your_db;
-USE you_db;
+USE your_db;
 ```
 Create the library table that will be used to manage all books:
 ```SQL
-ADD QUERY HERE
+CREATE TABLE books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL
+);
 ```
 
 After cloning this repo, create a .env file in the root folder which will have this structure:

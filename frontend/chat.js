@@ -22,8 +22,13 @@ document.getElementById('chatBtn').addEventListener('click', async () => {
 
   document.getElementById('chatGenreBtn').addEventListener('click', async () => {
     const input = document.getElementById('chatInput').value;
-    if (!input) return;
+    if (!input) {
+      document.getElementById("missingGenre").innerText = "Remember to type the genre above :)"
+      return;
+    }
   
+    document.getElementById("missingGenre").innerText = '';
+    
     const response = await fetch('http://localhost:3000/queries/getBooks');
     const res = await response.json();
     

@@ -1,5 +1,5 @@
 # AI_library
-A simple web based library where Bookbot will assist in finding what you need.
+A simple web based library where a kind llm will assist you in finding what you need.
 
 ## Requirements
 [Node.js](https://nodejs.org/en/download) <br />

@@ -1,6 +1,11 @@
 # AI_library
 A simple web based library where a kind llm will assist you in finding what you need.
 
+<img width = "500" height = "450" src="images/table.PNG">
+<img width = "500" height = "450" src="images/llm.PNG">
+<img width = "500" height = "450" src="images/add book.PNG">
+<img width = "500" height = "450" src="images/delete.PNG">
+
 ## Requirements
 [Node.js](https://nodejs.org/en/download) <br />
 [Groq API key](https://console.groq.com/keys) <br />

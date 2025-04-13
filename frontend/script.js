@@ -12,11 +12,24 @@
 
 // add all events listeners tied to the buttons click
 document.addEventListener('DOMContentLoaded', () => {
-    // to make the book table visible
-    document.getElementById('loadBtn').addEventListener('click', loadBooks);
+   //this is to filter books
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      loadBooks(e.target.value);
+    });
+
+    // to make the book table visible (the line commented passes the event object instead of an empty string parameter)
+    //document.getElementById('loadBtn').addEventListener('click', loadBooks);
+
+    document.getElementById('toggleFormBtn').addEventListener('click', toggleForm);
+
 
     // makes the form to add/edit a book appear
-    document.getElementById('toggleFormBtn').addEventListener('click', toggleForm);
+    document.getElementById('loadBtn').addEventListener('click', () => {
+      if (searchInput.style.display === 'none') {
+        searchInput.style.display = 'block';
+      }
+      loadBooks(); // No filter initially
+    });
 
     // to add/edit a book after filling the form
     document.getElementById('submitBtn').addEventListener('click', addEditFromForm);
@@ -51,14 +64,29 @@ async function loadBooks() {
         console.error('Error loading books:', error);
     }
 }*/
-async function loadBooks() {
+async function loadBooks(filter = '') {
     try {
       const response = await fetch('http://localhost:3000/queries/getBooks');
-      const data = await response.json();
+      const res = await response.json();
+      data = {};
+
+      //console.log(String(filter || ''))
+      // without getComputedStyle you only check inline style, so not the actual visibility that also the user can see
+      if(getComputedStyle(document.getElementById('searchInput')).display === 'none' || String(filter || '').trim() === '') {
+        document.getElementById('searchInput').style.display = 'block';
+        data = res;
+      }
+      else {
+        // 🔍 Apply search filtering
+data = res.filter(book =>
+  book.title.toLowerCase().includes(filter.toLowerCase()) ||
+  book.author.toLowerCase().includes(filter.toLowerCase())
+);
+      }
   
       const container = document.getElementById('booksList');
       container.innerHTML = ''; // Clear previous content
-  
+
       if (!data.length) {
         container.textContent = 'No books found.';
         return;

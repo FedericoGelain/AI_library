@@ -124,7 +124,7 @@ async function loadBooks(filter = '') {
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = 'Delete';
       deleteBtn.classList.add('btn');
-      deleteBtn.onclick = () => deleteBookRecord(book.id); // function called when the button is clicked
+      deleteBtn.onclick = () => deleteBookRecord(book.id, book.title); // function called when the button is clicked
       deleteTd.appendChild(deleteBtn);
       row.appendChild(deleteTd);
 
@@ -243,13 +243,13 @@ function openEditForm(book) {
 }
 
 // create a small box that asks for confirmation when trying to delete a book record
-function deleteBookRecord(bookId) {
+function deleteBookRecord(bookId, title) {
   const confirmBox = document.createElement('div');
   confirmBox.classList.add('confirm-box');
 
   confirmBox.innerHTML = `
     <div class="confirm-content">
-      <p>Are you sure you want to delete this book?</p>
+      <p>Are you sure you want to delete <strong>${title}</strong>?</p>
       <button class="btn confirm-yes">Yes</button>
       <button class="btn confirm-no">Cancel</button>
     </div>

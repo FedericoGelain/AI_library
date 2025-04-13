@@ -1,20 +1,6 @@
 require('dotenv').config() // allows to access variables defined in .env file
 const mysql = require('mysql2'); // to connect to a MySQL database
 
-//console.log(process.env) 
-
-//const pool = mysql.createPool({
-//    host: 'localhost',
-//    user: 'root',
-//    password: '8L6u=9[Y',
-//    database: 'books_db',
-//});
-
-//const promisePool = pool.promise();
-//module.exports = promisePool;
-
-//console.log('ENV values:', process.env.DB_HOST, process.env.DB_USER);
-
 // create the connection to the MySQL database
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,

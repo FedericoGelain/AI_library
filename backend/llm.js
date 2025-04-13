@@ -1,7 +1,5 @@
-const groq = require('groq-sdk');
-const dotenv = require('dotenv');
-
-dotenv.config();
+const groq = require('groq-sdk'); // to import the llm model
+require('dotenv').config(); // to retrieve the api key
 
 const llm = new groq({ apiKey: process.env.GROQ_API_KEY });
 

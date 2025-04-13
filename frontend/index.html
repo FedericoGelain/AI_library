@@ -12,19 +12,15 @@
   <div class="buttons">
     <button id="loadBtn">Load Books</button>
     <button id="toggleFormBtn">➕ Add Book</button>
-  </div>
-  
-  <div class="chatbox">
-    <h2>Chatbot</h2>
-    <input type="text" id="chatInput" placeholder="Ask me something..." />
-    <button id="chatBtn">Send</button>
-    <div id="chatResponse"></div>
+    <button onclick="location.href='chat.html'">💬 Chatbot</button> <!-- 👈 New Button -->
   </div>
   
   <div class="form" id="bookForm" style="display: none;">
     <h2>Add a New Book</h2>
-    <input type="text" id="titleInput" placeholder="Book Title" />
-    <input type="text" id="authorInput" placeholder="Author" />
+    <input type="text" id="titleInput" placeholder="title" />
+    <input type="text" id="authorInput" placeholder="author" />
+    <input type="number" id="yearInput" name="year" min="0" max="3000" placeholder="publication year">
+    <input type="number" id="priceInput" name="price" min="0.0" max="1000" step="0.01" placeholder="price">
     <button id="submitBtn">Confirm book details </button>
   </div>
 

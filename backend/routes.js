@@ -33,7 +33,7 @@ router.get('/getBooks', (req, res) => {
 });
 
 // if the client makes a request with fetch() to a URL that ends with /addBook
-router.post('/addBook', (req, res) => {
+router.post('/testAddBook', (req, res) => {
   // Dummy example, replace with the request data
   title = 'Ciao';
   author = 'io';
@@ -47,7 +47,6 @@ router.post('/addBook', (req, res) => {
 
     res.status(201).send({message : 'Book successfully created!'})
   });
-
 });
 
 router.post('/addBookFromForm', (req, res) => {
@@ -56,10 +55,34 @@ router.post('/addBookFromForm', (req, res) => {
       return res.status(400).json({ error: 'Title and author are required' });
     }
   
-    db.query('INSERT INTO books (title, author, year, price) VALUES (?, ?, ?, ?)', [title, author, 2000, 1.5], (err, result) => {
+    db.query('INSERT INTO books (title, author, year, price) VALUES (?, ?, ?, ?)', [req.body.title, req.body.author, req.body.year, req.body.price], (err, result) => {
       if (err) return res.status(500).send(err);
       res.json({ message: 'Book added successfully' });
     });
   });
-  
+
+  // Update book
+router.put('/updateBook/:id', (req, res) => {
+  const { title, author, year, price } = req.body;
+  const { id } = req.params;
+  db.query(
+    'UPDATE books SET title = ?, author = ?, year = ?, price = ? WHERE id = ?',
+    [title, author, year, price, id],
+    (err, result) => {
+      if (err) return res.status(500).send(err);
+      res.json({ message: 'Book updated successfully' });
+    }
+  );
+});
+
+// Delete a book
+router.delete('/deleteBook/:id', (req, res) => {
+  const { id } = req.params;
+  db.query('DELETE FROM books WHERE id = ?', [id], (err) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: 'Book deleted successfully' });
+  });
+});
+
+
 module.exports = router;
